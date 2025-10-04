@@ -4,19 +4,36 @@
 
 <img width="250" height="600" alt="Diagrama_de_Paquetes(Parte 0)" src="https://github.com/user-attachments/assets/45c8266c-8e46-4259-89a4-07766223a3ca" />
 
-## Explicación del paso a paso general para el Diagrama de Paquetes:
+## 1) Explicación de las capas del Diagrama de Paquetes:
 
-1- Objetivo del diagrama: Mostrar la vista de alto nivel (3 capas) y las vías de comunicación entre ellas usando el patrón Facade.
+## 1- Presentation Layer (Servicios, API)
+- Responsabilidad: Gestiona la interacción entre el usuario y la aplicación.
+- Componentes:
+  - API: Expone endpoints (ejemplo: GET /places, POST /users).
+  - Services: coordinan las peticiones y llaman al Facade.
 
-2- Elementos obligatorios:
-- Paquetes: PresentationLayer, BusinessLogicLayer, PersistenceLayer.
-- Componentes dentro de cada paquete (ej.: API, Services, User, Facade, DatabaseRepository).
-- Flechas/etiquetas: Uses Facade, Database Operations.
-- Estereotipo visual: «Package» sobre cada caja.
+## 2- Business Logic Layer (Modelos + Facade)
+- Responsabilidad: Contiene las reglas de negocio y el núcleo de la aplicación.
+- Componentes:
+  - Modelos principales: User, Place, Review, Amenity.
+  - Facade: interfaz unificada que recibe las peticiones desde la capa de presentación y gestiona la comunicación con la capa de persistencia.
 
-3- Formato de las cajas (cada paquete):
-- Encabezado: «Package» + nombre (centrado).
-- 
+## 3- Persistence Layer (Almacenamiento de datos)
+- Responsabilidad: Maneja directamente la base de datos.
+- Componentes:
+  - DatabaseRepository: CRUD de las entidades.
+  - StorageAdapter: abstrae la tecnología de la base de datos (MySQL, SQLite, etc.).
+
+## Rol del Patrón Facade
+El Facade actúa como intermediario entre la Presentation Layer y la Business Logic Layer:
+  - Simplifica la interacción y reduce la complejidad.
+  - Permite bajo acoplamiento: la capa de presentación no conoce detalles internos de los modelos ni de la persistencia.
+  - Hace posible cambiar la lógica interna sin afectar la API pública.
+
+Flujo simplificado:
+
+[User Request] → API → Facade → Models → Repository → Database
+
 ## Parte 1 – Diagrama de clases de lógica empresarial
 
 <img width="250" height="600" alt="Diagrama_de_Clases(Parte 1)" src="https://github.com/user-attachments/assets/2e14af07-91f3-414d-a93b-f5af36c59cca" />
