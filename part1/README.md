@@ -2,7 +2,7 @@
 
 ## Parte 0 – Diagrama de paquetes de alto nivel
 
-<img width="250" height="600" alt="Diagrama_de_Paquetes(Parte 0)" src="https://github.com/user-attachments/assets/45c8266c-8e46-4259-89a4-07766223a3ca" />
+<img width="400" height="600" alt="Diagrama_de_Paquetes(Parte 0)" src="https://github.com/user-attachments/assets/45c8266c-8e46-4259-89a4-07766223a3ca" />
 
 ## 1) Explicación de las capas del Diagrama de Paquetes:
 
