@@ -164,7 +164,7 @@ Luego se almacena la reseña y se responde al usuario con éxito.
 La API llama a la lógica de negocio, que consulta a la base de datos los lugares correspondientes.
 Finalmente, se devuelven los datos en formato JSON con código 200 OK.
 
-6. Referencias:
+## 6. Referencias:
 
 - https://learn.microsoft.com/en-us/style-guide/ Microsoft Writing Style Guide
 
