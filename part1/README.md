@@ -61,14 +61,14 @@ Persistence Layer (Database): Responsible for storing and retrieving data using 
 ## Role of the Facade Pattern
 The Facade acts as an intermediary between the Presentation Layer and the Business Logic Layer:
   - Simplifies interaction and reduces complexity.
-  - Enables loose coupling: the presentation layer is unaware of internal details of models or persistence.
+  - Enables loose coupling: The presentation layer is unaware of internal details of models or persistence.
   - Makes it possible to change internal logic without affecting the public API.
 
 Simplified flow:
 
 [User Request] → API → Facade → Models → Repository → Database
 
-## Part 1. Detailed class diagram for the business logic layer
+## Part 1. Detailed class diagram for business logic layer
 
 <img width="400" height="800" alt="Diagrama_de_Clases(Parte 1)" src="https://github.com/user-attachments/assets/84e290b0-e4ba-4268-bfed-e5fda288c597" />
 
