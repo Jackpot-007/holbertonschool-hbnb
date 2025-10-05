@@ -1,6 +1,40 @@
 ## Proyecto de diagramas UML
 
+HBnB Project — Technical Architecture Document
+
+Author: Lautaro Ezequiel y Lucas Noble
+
+Version: 1.0
+
+Document Type: Comprehensive Technical Architecture & Design
+
+## 1. Introduction
+
+- El presente documento técnico describe la arquitectura, el diseño y los principales componentes del proyecto HBnB.
+Su propósito es servir como guía de referencia para el desarrollo e implementación del sistema, asegurando que cada parte de la aplicación mantenga una estructura coherente, modular y escalable.
+
+- El documento compila los resultados de las siguientes etapas previas:
+
+Parte 0: High-Level Package Diagram (Arquitectura por capas y patrón Facade).
+Parte 1: Detailed Class Diagram for Business Logic Layer (Modelo de negocio).
+Parte 2: Sequence Diagrams for API Calls (Flujo de interacción entre capas).
+
+- Cada sección incluye diagramas UML representados en Mermaid.js, acompañados de explicaciones detalladas sobre las decisiones de diseño, las interacciones entre componentes y la responsabilidad de cada elemento dentro del sistema.
+
 ## Parte 0 – Diagrama de paquetes de alto nivel
+
+## Descripción general:
+
+- El sistema HBnB adopta una arquitectura en tres capas (Three-Layer Architecture) para lograr separación de responsabilidades, escalabilidad y mantenimiento eficiente.
+- Las capas son:
+
+Presentation Layer (Servicios / API): Gestiona la interacción con el usuario final, manejando peticiones HTTP y respuestas JSON a través de endpoints RESTful.
+
+Business Logic Layer (Modelos): Implementa la lógica del negocio y define las entidades principales del sistema (User, Place, Review, Amenity).
+
+Persistence Layer (Base de datos): Responsable del almacenamiento y recuperación de datos mediante objetos de acceso a datos (DAOs o repositorios).
+
+- El patrón Facade actúa como interfaz unificada entre las capas, permitiendo que la capa de presentación se comunique con la lógica del negocio sin depender de los detalles internos de implementación.
 
 <img width="400" height="800" alt="Diagrama_de_Paquetes(Parte 0)" src="https://github.com/user-attachments/assets/45c8266c-8e46-4259-89a4-07766223a3ca" />
 
@@ -34,11 +68,15 @@ Flujo simplificado:
 
 [User Request] → API → Facade → Models → Repository → Database
 
-## Parte 1 –  Diagrama de clases detallado para la capa de lógica de negocio
+## Parte 1. Diagrama de clases detallado para la capa de lógica de negocio
 
 <img width="400" height="800" alt="Diagrama_de_Clases(Parte 1)" src="https://github.com/user-attachments/assets/84e290b0-e4ba-4268-bfed-e5fda288c597" />
 
 ## 1) Explicación de las entidades del Diagrama de Clases:
+
+## Descripción general:
+
+- Esta capa contiene la lógica central del sistema y los modelos que representan las entidades del dominio:
 
 ## 1- User (Usuario)
 - Rol: Representa a los usuarios de la aplicación (propietarios, viajeros).
@@ -84,7 +122,11 @@ Flujo simplificado:
 - Place – Amenity:
   - Relación muchos a muchos: un Place puede tener varios Amenity, y un Amenity puede estar en varios Place.
 
-## Parte 2 - Diagramas de secuencia para llamadas a la API
+## Parte 2. Diagramas de secuencia para llamadas a la API
+
+## Descripción general:
+
+- Los diagramas de secuencia muestran cómo se comunican las capas para procesar las peticiones de la API, reflejando el flujo de información desde el usuario hasta la base de datos y de regreso.
 
 ## 1) User Registration (Diagrama de Registro de Usuario)
 
@@ -115,3 +157,19 @@ Luego se almacena la reseña y se responde al usuario con éxito.
 
 ## 4) Fetching a List of Places (Listado de Lugares)
 
+<img width="1920" height="1080" alt="Diagrama_de_Listado de Lugares(Parte 2)" src="https://github.com/user-attachments/assets/3f213531-8f0d-405f-b720-e97677971528" />
+
+## Explicación
+- El usuario solicita una lista de lugares con ciertos filtros (por ejemplo, ciudad o precio).
+La API llama a la lógica de negocio, que consulta a la base de datos los lugares correspondientes.
+Finalmente, se devuelven los datos en formato JSON con código 200 OK.
+
+6. Referencias:
+
+- https://learn.microsoft.com/en-us/style-guide/ Microsoft Writing Style Guide
+
+- https://developers.google.com/style Google Developer Documentation Style Guide
+
+- https://www.uml-diagrams.org/ UML Diagrams Guide
+
+- https://mermaid.js.org/ Mermaid.js Documentation
