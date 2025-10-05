@@ -2,7 +2,7 @@
 
 HBnB Project — Technical Architecture Document
 
-Author: Lautaro Ezequiel y Lucas Noble
+Author: Lautaro Ezequiel and Lucas Noble
 
 Version: 1.0
 
