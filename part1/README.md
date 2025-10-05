@@ -95,3 +95,23 @@ Flujo simplificado:
 La capa de presentación (API) valida la solicitud y la pasa a la lógica de negocio, que valida los datos y los guarda en la base de datos.
 Luego se devuelve una confirmación al usuario con un código de estado 201 (Created).
 
+## 2) Place Creation (Creación de Lugar)
+
+<img width="400" height="600" alt="Diagrama_de_Creación_de_Lugar(Parte 2)" src="https://github.com/user-attachments/assets/045595a8-8b6a-488c-924c-73ccf6ec6244" />
+
+## Explicación
+- El usuario crea una nueva publicación enviando los datos de su lugar.
+La API valida la información y la pasa a la capa de negocio, que realiza las validaciones adicionales y guarda el lugar en la base de datos.
+El proceso termina devolviendo el ID del lugar creado al usuario.
+
+## 3) Review Submission (Envío de Reseña)
+
+<img width="1920" height="1080" alt="Diagrama_de_Envio_de_Reseña(Parte 2)" src="https://github.com/user-attachments/assets/40b8be64-fb61-4d11-a7b9-2fe558c08110" />
+
+## Explicación
+- El usuario envía una reseña asociada a un lugar.
+La API recibe la solicitud y la delega a la lógica de negocio, que valida si el usuario y el lugar existen y si la reseña cumple las reglas.
+Luego se almacena la reseña y se responde al usuario con éxito.
+
+## 4) Fetching a List of Places (Listado de Lugares)
+
