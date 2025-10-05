@@ -1,4 +1,4 @@
-## Proyecto de diagramas UML
+## UML diagram project
 
 HBnB Project — Technical Architecture Document
 
@@ -10,161 +10,161 @@ Document Type: Comprehensive Technical Architecture & Design
 
 ## 1. Introduction
 
-- El presente documento técnico describe la arquitectura, el diseño y los principales componentes del proyecto HBnB.
-Su propósito es servir como guía de referencia para el desarrollo e implementación del sistema, asegurando que cada parte de la aplicación mantenga una estructura coherente, modular y escalable.
+- This technical document describes the architecture, design, and main components of the HBnB project.
+Its purpose is to serve as a reference guide for the development and implementation of the system, ensuring that each part of the application maintains a consistent, modular, and scalable structure.
 
-- El documento compila los resultados de las siguientes etapas previas:
+- The document compiles the results of the following previous stages:
 
-Parte 0: High-Level Package Diagram (Arquitectura por capas y patrón Facade).
-Parte 1: Detailed Class Diagram for Business Logic Layer (Modelo de negocio).
-Parte 2: Sequence Diagrams for API Calls (Flujo de interacción entre capas).
+Part 0: High-Level Package Diagram (Layered Architecture and Facade Pattern).
+Part 1: Detailed Class Diagram for Business Logic Layer (Business Model).
+Part 2: Sequence Diagrams for API Calls (Interaction Flow Between Layers).
 
-- Cada sección incluye diagramas UML representados en Mermaid.js, acompañados de explicaciones detalladas sobre las decisiones de diseño, las interacciones entre componentes y la responsabilidad de cada elemento dentro del sistema.
+- Each section includes UML diagrams rendered in Mermaid.js, accompanied by detailed explanations of design decisions, interactions between components, and the responsibility of each element within the system.
 
-## Parte 0 – Diagrama de paquetes de alto nivel
+## Part 0 – High-level package diagram
 
-## Descripción general:
+## General description:
 
-- El sistema HBnB adopta una arquitectura en tres capas (Three-Layer Architecture) para lograr separación de responsabilidades, escalabilidad y mantenimiento eficiente.
-- Las capas son:
+- The HBnB system adopts a three-layer architecture to achieve separation of responsibilities, scalability, and efficient maintenance.
+- The layers are:
 
-Presentation Layer (Servicios / API): Gestiona la interacción con el usuario final, manejando peticiones HTTP y respuestas JSON a través de endpoints RESTful.
+Presentation Layer (Services/API): Manages interaction with the end user, handling HTTP requests and JSON responses through RESTful endpoints.
 
-Business Logic Layer (Modelos): Implementa la lógica del negocio y define las entidades principales del sistema (User, Place, Review, Amenity).
+Business Logic Layer (Models): Implements business logic and defines the main entities of the system (User, Place, Review, Amenity).
 
-Persistence Layer (Base de datos): Responsable del almacenamiento y recuperación de datos mediante objetos de acceso a datos (DAOs o repositorios).
+Persistence Layer (Database): Responsible for storing and retrieving data using data access objects (DAOs or repositories).
 
-- El patrón Facade actúa como interfaz unificada entre las capas, permitiendo que la capa de presentación se comunique con la lógica del negocio sin depender de los detalles internos de implementación.
+- The Facade pattern acts as a unified interface between layers, allowing the presentation layer to communicate with the business logic without depending on internal implementation details.
 
 <img width="400" height="800" alt="Diagrama_de_Paquetes(Parte 0)" src="https://github.com/user-attachments/assets/45c8266c-8e46-4259-89a4-07766223a3ca" />
 
-## 1) Explicación de las capas del Diagrama de Paquetes:
+## 1) Explanation of the layers of the Packet Diagram:
 
-## 1- Presentation Layer (Servicios, API)
-- Responsabilidad: Gestiona la interacción entre el usuario y la aplicación.
-- Componentes:
-  - API: Expone endpoints (ejemplo: GET /places, POST /users).
-  - Services: coordinan las peticiones y llaman al Facade.
+## 1- Presentation Layer (Services, API)
+- Responsibility: Manages interaction between the user and the application.
+- Components:
+  - API: Exposes endpoints (example: GET /places, POST /users).
+  - Services: Coordinate requests and call the Facade.
 
-## 2- Business Logic Layer (Modelos + Facade)
-- Responsabilidad: Contiene las reglas de negocio y el núcleo de la aplicación.
-- Componentes:
-  - Modelos principales: User, Place, Review, Amenity.
-  - Facade: interfaz unificada que recibe las peticiones desde la capa de presentación y gestiona la comunicación con la capa de persistencia.
+## 2- Business Logic Layer (Models + Facade)
+- Responsibility: Contains the business rules and the core of the application.
+- Components:
+  - Main models: User, Place, Review, Amenity.
+  - Facade: Unified interface that receives requests from the presentation layer and manages communication with the persistence layer.
 
-## 3- Persistence Layer (Almacenamiento de datos)
-- Responsabilidad: Maneja directamente la base de datos.
-- Componentes:
-  - DatabaseRepository: CRUD de las entidades.
-  - StorageAdapter: abstrae la tecnología de la base de datos (MySQL, SQLite, etc.).
+## 3- Persistence Layer (Data storage)
+- Responsibility: Directly manages the database.
+- Components:
+  - DatabaseRepository: CRUD of entities.
+  - StorageAdapter: Abstracts database technology (MySQL, SQLite, etc.).
 
-## Rol del Patrón Facade
-El Facade actúa como intermediario entre la Presentation Layer y la Business Logic Layer:
-  - Simplifica la interacción y reduce la complejidad.
-  - Permite bajo acoplamiento: la capa de presentación no conoce detalles internos de los modelos ni de la persistencia.
-  - Hace posible cambiar la lógica interna sin afectar la API pública.
+## Role of the Facade Pattern
+The Facade acts as an intermediary between the Presentation Layer and the Business Logic Layer:
+  - Simplifies interaction and reduces complexity.
+  - Enables loose coupling: the presentation layer is unaware of internal details of models or persistence.
+  - Makes it possible to change internal logic without affecting the public API.
 
-Flujo simplificado:
+Simplified flow:
 
 [User Request] → API → Facade → Models → Repository → Database
 
-## Parte 1. Diagrama de clases detallado para la capa de lógica de negocio
+## Part 1. Detailed class diagram for the business logic layer
 
 <img width="400" height="800" alt="Diagrama_de_Clases(Parte 1)" src="https://github.com/user-attachments/assets/84e290b0-e4ba-4268-bfed-e5fda288c597" />
 
-## 1) Explicación de las entidades del Diagrama de Clases:
+## 1) Explanation of the entities in the Class Diagram:
 
-## Descripción general:
+## General description:
 
-- Esta capa contiene la lógica central del sistema y los modelos que representan las entidades del dominio:
+- This layer contains the core logic of the system and the models representing the domain entities:
 
-## 1- User (Usuario)
-- Rol: Representa a los usuarios de la aplicación (propietarios, viajeros).
-- Atributos principales:
-  - id (UUID, identificador único).
+## 1- User
+- Role: Represents the users of the application (owners, travelers).
+- Key attributes:
+  - id (UUID, unique identifier).
   - name, email, password.
-  - created_at, updated_at para trazabilidad.
-- Métodos:
+  - created_at, updated_at for traceability.
+- Methods:
   - create(), update(), delete().
 
-## 2- Place (Lugar)
-- Rol: Representa los lugares o alojamientos disponibles.
-- Atributos principales:
+## 2- Place
+- Role: Represents available locations or accommodations.
+- Key attributes:
   - id, name, description, location.
   - price_per_night
   - created_at, updated_at.
-- Métodos:
+- Methods:
   - create(), update(), delete().
 
-## 3- Review (Revisar)
-- Rol: Representa las reseñas que los usuarios hacen sobre los lugares.
-- Atributos principales:
+## 3- Review
+- Role: Represents the reviews that users make about places.
+- Key attributes:
   - id, content, rating.
   - created_at, updated_at.
-- Métodos:
+- Methods:
   - create(), update(), delete().
 
-## Amenity (Amenidad)
-- Rol: Representa las comodidades o servicios disponibles en un lugar.
-- Atributos principales:
+## Amenity
+- Role: Represents the amenities or services available at a location.
+- Key attributes:
   - id, name, description.
   - created_at, updated_at.
-- Métodos:
+- Methods:
   - create(), update(), delete().
 
-## Relaciones entre Entidades
+## Relationships between Entities
 - User – Place:
-  - Un User puede poseer varios Place.
+  - A User can own multiple Places.
 - User – Review:
-  - Un User puede escribir varias Review.
+  - A User can write several Reviews.
 - Place – Review:
   - Un Place puede tener múltiples Review.
 - Place – Amenity:
-  - Relación muchos a muchos: un Place puede tener varios Amenity, y un Amenity puede estar en varios Place.
+  - Many-to-many relationship: a Place can have multiple Amenities, and an Amenity can be in multiple Places.
 
-## Parte 2. Diagramas de secuencia para llamadas a la API
+## Part 2. Sequence diagrams for API calls
 
-## Descripción general:
+## General description:
 
-- Los diagramas de secuencia muestran cómo se comunican las capas para procesar las peticiones de la API, reflejando el flujo de información desde el usuario hasta la base de datos y de regreso.
+- Sequence diagrams show how layers communicate to process API requests, reflecting the flow of information from the user to the database and back.
 
-## 1) User Registration (Diagrama de Registro de Usuario)
+## 1) User Registration (User Registration Diagram)
 
 <img width="1920" height="1080" alt="Diagrama_de_Registro_de_Usuario(Parte 2)" src="https://github.com/user-attachments/assets/33eb3505-c91e-4152-8b2b-54abb78f4568" />
 
-## Explicación
-- El usuario envía sus datos de registro al endpoint /users/register.
-La capa de presentación (API) valida la solicitud y la pasa a la lógica de negocio, que valida los datos y los guarda en la base de datos.
-Luego se devuelve una confirmación al usuario con un código de estado 201 (Created).
+## Explanation
+- The user sends their registration data to the /users/register endpoint.
+The presentation layer (API) validates the request and passes it to the business logic, which validates the data and saves it to the database.
+A confirmation is then returned to the user with a status code of 201 (Created).
 
-## 2) Place Creation (Creación de Lugar)
+## 2) Place Creation (Creation of Place)
 
 <img width="1920" height="1080" alt="Diagrama_de_Creación_de_Lugar(Parte 2)" src="https://github.com/user-attachments/assets/045595a8-8b6a-488c-924c-73ccf6ec6244" />
 
-## Explicación
-- El usuario crea una nueva publicación enviando los datos de su lugar.
-La API valida la información y la pasa a la capa de negocio, que realiza las validaciones adicionales y guarda el lugar en la base de datos.
-El proceso termina devolviendo el ID del lugar creado al usuario.
+## Explanation
+- The user creates a new post by submitting their location data.
+The API validates the information and passes it to the business layer, which performs additional validations and saves the location in the database.
+The process ends by returning the ID of the created place to the user.
 
-## 3) Review Submission (Envío de Reseña)
+## 3) Review Submission (Submit Review)
 
 <img width="1920" height="1080" alt="Diagrama_de_Envio_de_Reseña(Parte 2)" src="https://github.com/user-attachments/assets/40b8be64-fb61-4d11-a7b9-2fe558c08110" />
 
-## Explicación
-- El usuario envía una reseña asociada a un lugar.
-La API recibe la solicitud y la delega a la lógica de negocio, que valida si el usuario y el lugar existen y si la reseña cumple las reglas.
-Luego se almacena la reseña y se responde al usuario con éxito.
+## Explanation
+- The user submits a review associated with a place.
+The API receives the request and delegates it to the business logic, which validates whether the user and the place exist and whether the review meets the rules.
+The review is then stored and the user is responded to successfully.
 
-## 4) Fetching a List of Places (Listado de Lugares)
+## 4) Fetching a List of Places (List of Places)
 
 <img width="1920" height="1080" alt="Diagrama_de_Listado de Lugares(Parte 2)" src="https://github.com/user-attachments/assets/3f213531-8f0d-405f-b720-e97677971528" />
 
-## Explicación
-- El usuario solicita una lista de lugares con ciertos filtros (por ejemplo, ciudad o precio).
-La API llama a la lógica de negocio, que consulta a la base de datos los lugares correspondientes.
-Finalmente, se devuelven los datos en formato JSON con código 200 OK.
+## Explanation
+- The user requests a list of places with certain filters (for example, city or price).
+The API calls the business logic, which queries the database for the corresponding places.
+Finally, the data is returned in JSON format with code 200 OK.
 
-## 6. Referencias:
+## 6. References:
 
 - https://learn.microsoft.com/en-us/style-guide/ Microsoft Writing Style Guide
 
