@@ -36,7 +36,7 @@ Flujo simplificado:
 
 ## Parte 1 –  Diagrama de clases detallado para la capa de lógica de negocio
 
-<img width="250" height="600" alt="Diagrama_de_Clases(Parte 1)" src="https://github.com/user-attachments/assets/2e14af07-91f3-414d-a93b-f5af36c59cca" />
+<img width="1920" height="1080" alt="Diagrama_de_Clases(Parte 1)" src="https://github.com/user-attachments/assets/2e14af07-91f3-414d-a93b-f5af36c59cca" />
 
 ## 1) Explicación de las entidades del Diagrama de Clases:
 
@@ -88,7 +88,7 @@ Flujo simplificado:
 
 ## 1) User Registration (Diagrama de Registro de Usuario)
 
-<img width="400" height="600" alt="Diagrama_de_Registro_de_Usuario(Parte 2)" src="https://github.com/user-attachments/assets/33eb3505-c91e-4152-8b2b-54abb78f4568" />
+<img width="1920" height="1080" alt="Diagrama_de_Registro_de_Usuario(Parte 2)" src="https://github.com/user-attachments/assets/33eb3505-c91e-4152-8b2b-54abb78f4568" />
 
 ## Explicación
 - El usuario envía sus datos de registro al endpoint /users/register.
@@ -97,7 +97,7 @@ Luego se devuelve una confirmación al usuario con un código de estado 201 (Cre
 
 ## 2) Place Creation (Creación de Lugar)
 
-<img width="400" height="600" alt="Diagrama_de_Creación_de_Lugar(Parte 2)" src="https://github.com/user-attachments/assets/045595a8-8b6a-488c-924c-73ccf6ec6244" />
+<img width="1920" height="1080" alt="Diagrama_de_Creación_de_Lugar(Parte 2)" src="https://github.com/user-attachments/assets/045595a8-8b6a-488c-924c-73ccf6ec6244" />
 
 ## Explicación
 - El usuario crea una nueva publicación enviando los datos de su lugar.
