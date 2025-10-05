@@ -36,7 +36,7 @@ Flujo simplificado:
 
 ## Parte 1 –  Diagrama de clases detallado para la capa de lógica de negocio
 
-<img width="400" height="800" alt="Diagrama_de_Clases(Parte 1)" src="https://github.com/user-attachments/assets/2e14af07-91f3-414d-a93b-f5af36c59cca" />
+<img width="250" height="600" alt="Diagrama_de_Clases(Parte 1)" src="https://github.com/user-attachments/assets/84e290b0-e4ba-4268-bfed-e5fda288c597" />
 
 ## 1) Explicación de las entidades del Diagrama de Clases:
 
